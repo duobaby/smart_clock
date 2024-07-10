@@ -25,7 +25,6 @@
  *  STATIC PROTOTYPES
  **********************/
 static void lv_btn_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj);
-
 /**********************
  *  STATIC VARIABLES
  **********************/
