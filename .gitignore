@@ -1,0 +1,17 @@
+/.vscode
+/DebugConfig
+/GPIO
+/MDK-ARM
+/RTE/
+/.mxproject
+/KeilClear.bat
+/clock.uvprojx
+/clock.uvguix.231188
+/clock.uvoptx
+/startup_stm32f411xe.lst
+/.cmsis
+/.eide
+/.clang-format
+/.eide.usr.ctx.json
+/build
+/EventRecorderStub.scvd
