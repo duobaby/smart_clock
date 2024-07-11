@@ -1,10 +1,6 @@
 #ifndef __TP_H_
 #define __TP_H_
 
-#ifdef __cplusplus
-extern "C" { 
-#endif
-
 #include "main.h"
 
 class soft_iic_io {
@@ -88,13 +84,6 @@ extern tp touch_pad;
 #define LongPressTime 	0xFC
 #define IOCtl 					0xFD
 #define DisAutoSleep 		0xFE
-
-
-
-
-#ifdef __cplusplus
-}
-#endif
 
 
 #endif // !__TP_H_

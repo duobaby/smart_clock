@@ -1,21 +1,13 @@
-#ifdef __cplusplus 
-extern "C" {
-#endif
-    #include "lcd.h"
-    #include "spi.h"
-    #include "main.h"
-    #include "delay.h"
-    #include "tp.h"
-    #include "rtthread.h"
-    #include "lvgl.h"
-    #include "lv_port_disp.h"
-    #include "lv_port_indev.h"
-    void SystemClock_Config(void);
-#ifdef __cplusplus 
-}
-#endif
-
-
+#include "lcd.h"
+#include "spi.h"
+#include "main.h"
+#include "delay.h"
+#include "tp.h"
+#include "rtthread.h"
+#include "lvgl.h"
+#include "lv_port_disp.h"
+#include "lv_port_indev.h"
+void SystemClock_Config(void);
 
 int main(void)
 {
@@ -30,6 +22,7 @@ int main(void)
 
     lv_port_disp_init();
     lv_port_indev_init();
+    //创建一个btn对象
    // lv_obj_t *btn = lv_btn_create(lv_scr_act());
    // lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
    // lv_obj_t *btn1 = lv_btn_create(lv_scr_act());

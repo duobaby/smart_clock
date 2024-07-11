@@ -2,10 +2,6 @@
 #define __DELAY_H_
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "main.h"
 
 class Delay {
@@ -20,10 +16,9 @@ public:
     void us(uint32_t nus);
     void ms(uint32_t nms);
 };
+
 extern Delay delay;
-#ifdef __cplusplus
-}
-#endif
+
 
 
 #endif // !__DELAY_H_

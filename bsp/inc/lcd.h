@@ -2,11 +2,6 @@
 #define __LCD_H_
 
 
-
-#ifdef __cplusplus
-extern "C" { 
-#endif
-
 #include "main.h"
 #include "spi.h"
 
@@ -70,9 +65,5 @@ extern lcd_dev lcd_Dev;
  		     
 #define LCD_CS_Clr()   HAL_GPIO_WritePin(CS_PORT,CS_PIN,GPIO_PIN_RESET)//CS
 #define LCD_CS_Set()   HAL_GPIO_WritePin(CS_PORT,CS_PIN,GPIO_PIN_SET)
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // !__LCD_H_

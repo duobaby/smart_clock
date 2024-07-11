@@ -1,9 +1,6 @@
 #ifndef __SPI_H_
 #define __SPI_H_
 
-#ifdef __cplusplus
-extern "C" { 
-#endif
 
 #include "main.h"
 
@@ -42,10 +39,6 @@ public:
 
 extern SPI_HandleTypeDef spi1;
 extern DMA_HandleTypeDef spi_dma1;
-
-#ifdef __cplusplus
-}
-#endif
 
 
 #endif // !__SPI_H_

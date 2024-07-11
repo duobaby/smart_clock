@@ -11,7 +11,6 @@
  *********************/
 #include "lv_port_disp.h"
 #include "lvgl.h"
-
 #include "lcd.h"
 
 
