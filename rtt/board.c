@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <rthw.h>
 #include <rtthread.h>
+#include <stm32f4xx_hal.h>
+#include <lvgl.h>
 
 #define _SCB_BASE       (0xE000E010UL)
 #define _SYSTICK_CTRL   (*(rt_uint32_t *)(_SCB_BASE + 0x0))
@@ -66,13 +68,7 @@ void rt_hw_board_init()
     /* System Clock Update */
 //    SystemCoreClockUpdate();
 //    
-//    /* System Tick Configuration */
-//    _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
-    
-    // HAL_Init();
-    // Stm32_Clock_Init(RCC_PLL_MUL9); 						//设置时钟,72M
-
-	// SysTick_Config(SystemCoreClock/RT_TICK_PER_SECOND);		
+//    /* System Tick Configuration */	
     
 //    uart_init(uart1,115200);
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
@@ -91,7 +87,8 @@ void SysTick_Handler(void)
     rt_interrupt_enter();
 
     rt_tick_increase();
-
+    HAL_IncTick();
+    lv_tick_inc(1);
     /* leave interrupt */
     rt_interrupt_leave();
 }

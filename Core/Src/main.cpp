@@ -8,7 +8,7 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 void SystemClock_Config(void);
-
+extern int lvgl_thread_init(void);
 int main(void)
 {
     HAL_Init();
@@ -19,13 +19,12 @@ int main(void)
     lcd_Dev.init();
     touch_pad.init();
 
-
-    lv_port_disp_init();
-    lv_port_indev_init();
+    //调用lvgl线程初始化的函数
+    lvgl_thread_init();
     //创建一个btn对象
-   // lv_obj_t *btn = lv_btn_create(lv_scr_act());
-   // lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
-   // lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
+    // lv_obj_t *btn = lv_btn_create(lv_scr_act());
+    // lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
+    // lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
     while (1)
     {
         // 设置引脚为高电平
