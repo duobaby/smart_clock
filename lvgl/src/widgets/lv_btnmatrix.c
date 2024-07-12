@@ -87,7 +87,7 @@ lv_obj_t * lv_btnmatrix_create(lv_obj_t * parent)
 }
 
 /*=====================
- * Setter functions
+ * Setter functionsF
  *====================*/
 
 void lv_btnmatrix_set_map(lv_obj_t * obj, const char * map[])
