@@ -6,7 +6,7 @@
         "output-debug-info": "enable"
     },
     "c/cpp-compiler": {
-        "optimization": "level-0",
+        "optimization": "level-3",
         "language-c": "c99",
         "language-cpp": "c++11",
         "plain-char-is-signed": true,
