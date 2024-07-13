@@ -43,6 +43,8 @@ public:
     }
     void (*home_ui_init)();
     friend void home_init();
+    friend void left_init();
+    friend void right_init();
 };
 
 
