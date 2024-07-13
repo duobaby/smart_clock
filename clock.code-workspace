@@ -38,7 +38,9 @@
             "tuple": "cpp",
             "type_traits": "cpp",
             "vector": "cpp",
-            "ios": "c"
+            "ios": "c",
+            "__config": "cpp",
+            "__nullptr": "cpp"
         },
         "[yaml]": {
             "editor.insertSpaces": true,

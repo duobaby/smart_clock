@@ -112,16 +112,10 @@
             "name": "src",
             "files": [
               {
-                "path": "app/game_app/game_2048.cpp"
-              },
-              {
-                "path": "app/stack_app/stack.cpp"
-              },
-              {
                 "path": "app/thread_app/thread_lvgl.cpp"
               },
               {
-                "path": "app/page_app/ui_page_home.cpp"
+                "path": "app/page_controller_app/PageManager.cpp"
               }
             ],
             "folders": []
@@ -208,7 +202,9 @@
           "lvgl/src",
           "lvgl",
           "thread_app/inc",
-          "app/page_app"
+          "app/page_controller_app",
+          "app/thread_app",
+          "app/ui_app"
         ],
         "libList": [],
         "defineList": [

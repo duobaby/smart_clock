@@ -12,23 +12,42 @@
 #define __PAGEMANAGER_H
 
 #include <stdint.h>
+#include <lvgl.h>
 
-template <class T>
+
+/**
+ * @brief 实现主页面ui以及应用逻辑
+ * 
+ */
+
+/**
+ * @brief 实现子页面下的ui，以及页面深度处理
+ * 
+ */
+typedef struct {
+    // No additional members or functions needed
+    void (*page_ui_init)();
+
+}page_t;
+
 class pagemanager {
+protected:
+    lv_obj_t *screen;  //
 private:
-    lv_obj_t *srceen;
-    constexpr uint8_t size;
-    T *stack;
+    uint8_t size;
+    page_t *stack = new page_t[size];
 public:
-    pagemanager(lv_obj_t *srceenn,constexpr uint8_t sizee,T *stackk) {
-        this->srceen = srceenn,
-        this->size = sizee,
-        this->stack = stackk
+    pagemanager(lv_obj_t *screen, const uint8_t sizee, void (*ui_init)()) 
+        : screen(screen), size(sizee), home_ui_init(ui_init) {
+        screen = lv_obj_create(lv_scr_act());
     }
+    void (*home_ui_init)();
+    friend void home_init();
 };
 
-pagemanager page_main;
-pagemanager page_left;
-pagemanager page_right;
+
+// pagemanager<> page_main;
+// pagemanager page_left;
+// pagemanager page_right;
 
 #endif
