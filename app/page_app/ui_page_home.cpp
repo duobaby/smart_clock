@@ -110,14 +110,13 @@ void ui_event_BLEButton(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED))
     {
         //checked
-       // HW_BLE_Enable();
+        // HW_BLE_Enable();
         ui_HomePageBLEEN=1;
-
     }
     if(event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target, LV_STATE_CHECKED))
     {
-        //released
-			//	HW_BLE_Disable();
+        //  released
+        //	HW_BLE_Disable();
         ui_HomePageBLEEN=0;
     }
 }

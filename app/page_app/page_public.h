@@ -14,13 +14,14 @@
 
 #include "lvgl.h"
 
+
 typedef struct {
     void (*init)(void);
     void (*deinit)(void);
     lv_obj_t **page_obj;  /* 用二级指针避免初始化地址为null */
 } Page_t;
 
-extern Page_t;
+
 
 // /**
 //  * @brief 

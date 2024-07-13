@@ -1,0 +1,215 @@
+{
+  "name": "clock",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    "rtt",
+    "startup",
+    "lvgl"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "bsp",
+        "files": [
+          {
+            "path": "bsp/src/lcd.cpp"
+          },
+          {
+            "path": "bsp/src/tp.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "core",
+        "files": [
+          {
+            "path": "Core/Src/delay.cpp"
+          },
+          {
+            "path": "Core/Src/main.cpp"
+          },
+          {
+            "path": "Core/Src/spi.cpp"
+          },
+          {
+            "path": "Core/Src/stm32f4xx_hal_msp.c"
+          },
+          {
+            "path": "Core/Src/stm32f4xx_it.c"
+          },
+          {
+            "path": "Core/Src/system_stm32f4xx.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "driver",
+        "files": [
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "thread_app",
+        "files": [],
+        "folders": [
+          {
+            "name": "src",
+            "files": [
+              {
+                "path": "app/game_app/game_2048.cpp"
+              },
+              {
+                "path": "app/stack_app/stack.cpp"
+              },
+              {
+                "path": "app/thread_app/thread_lvgl.cpp"
+              },
+              {
+                "path": "app/page_app/ui_page_home.cpp"
+              }
+            ],
+            "folders": []
+          }
+        ]
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "ad8537b675a74277d98e9eb991457102"
+  },
+  "targets": {
+    "Debug": {
+      "excludeList": [],
+      "toolchain": "AC6",
+      "compileConfig": {
+        "cpuType": "Cortex-M4",
+        "floatingPointHardware": "single",
+        "useCustomScatterFile": false,
+        "scatterFilePath": "<YOUR_SCATTER_FILE>.sct",
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0x40000"
+              },
+              "isChecked": true,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x08000000",
+                "size": "0x80000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "",
+        "cpuInfo": {
+          "vendor": "null",
+          "cpuName": "null"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "bsp/inc",
+          "Core/Inc",
+          "Drivers/STM32F4xx_HAL_Driver/Inc",
+          "Drivers/cmsis/Include",
+          "rtt",
+          "rtt/include",
+          "rtt/include/libc",
+          "rtt/components/finsh",
+          "lvgl/porting",
+          "lvgl/src",
+          "lvgl",
+          "thread_app/inc",
+          "app/page_app"
+        ],
+        "libList": [],
+        "defineList": [
+          "STM32F411xE",
+          "USE_HAL_DRIVER"
+        ]
+      }
+    }
+  },
+  "version": "3.4"
+}
