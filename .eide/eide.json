@@ -116,6 +116,9 @@
               },
               {
                 "path": "app/page_controller_app/PageManager.cpp"
+              },
+              {
+                "path": "app/thread_app/thread_key.cpp"
               }
             ],
             "folders": []
