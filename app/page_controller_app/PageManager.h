@@ -38,11 +38,14 @@ private:
     page_t *stack = new page_t[size];
 public:
     pagemanager(lv_obj_t *screen, const uint8_t sizee, void (*ui_init)()) 
-        : screen(screen), size(sizee), home_ui_init(ui_init) {
-        screen = lv_obj_create(lv_scr_act());
+        : screen(screen), size(sizee), ui_init(ui_init) {
+      //  screen = lv_obj_create(lv_scr_act());
     }
-    void (*home_ui_init)();
+    void (*ui_init)();
     friend void home_init();
+    friend void left_init();
+    friend void right_init();
+    friend void event_cb(lv_event_t *e);
 };
 
 

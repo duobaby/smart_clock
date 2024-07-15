@@ -73,7 +73,6 @@ void lv_port_indev_init(void)
     indev_drv.type = LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = touchpad_read;
     indev_touchpad = lv_indev_drv_register(&indev_drv);
-
 }
 
 /**********************
@@ -114,9 +113,9 @@ static bool touchpad_is_pressed(void)
 {
     /*Your code comes here*/
 	if(touch_pad.Get_FingerNum()!=0x00 && touch_pad.Get_FingerNum()!=0xFF)
-	{return true;}
+	    return true;
 	else
-  {return false;}
+        return false;
 }
 
 /*Get the x and y coordinates if the touchpad is pressed*/
