@@ -13,8 +13,13 @@
 
 #include "rtthread.h"
 
+/**
+ * @brief thread config，快速创建线程，
+ * @use   thread.create()
+ * @use   thread.sleep(1000)
+ */
 class thread_config
-{
+{  
 private:
     const char *name;
     void (*entry)(void *param);
@@ -22,6 +27,7 @@ private:
     rt_uint8_t priority;
     rt_uint32_t tick;
 public:
+    rt_thread_t tid;
     thread_config(const char *name,void (*entry)(void *param),rt_uint32_t stack_size,rt_uint8_t priority,rt_uint32_t tick) {
         this->name = name;
         this->entry = entry;
@@ -30,10 +36,9 @@ public:
         this->tick = tick;    
     }
     int create() {
-        rt_thread_t tid = RT_NULL;
         tid = rt_thread_create(name, entry, RT_NULL, stack_size, priority, tick);
         if (tid == RT_NULL) {
-            rt_kprintf("%s thread create failed\n",tid->name);
+            rt_kprintf("%s thread create failed\n", name);
             return -1;
         }
         rt_thread_startup(tid);
@@ -43,7 +48,6 @@ public:
         rt_thread_mdelay(tick);
     }
 };
-
 
 /**
  * @brief thread extern

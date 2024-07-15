@@ -155,27 +155,5 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
     lv_disp_flush_ready(disp_drv);
 }
 
-/*OPTIONAL: GPU INTERFACE*/
 
-/*If your MCU has hardware accelerator (GPU) then you can use it to fill a memory with a color*/
-//static void gpu_fill(lv_disp_drv_t * disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width,
-//                    const lv_area_t * fill_area, lv_color_t color)
-//{
-//    /*It's an example code which should be done by your GPU*/
-//    int32_t x, y;
-//    dest_buf += dest_width * fill_area->y1; /*Go to the first line*/
-//
-//    for(y = fill_area->y1; y <= fill_area->y2; y++) {
-//        for(x = fill_area->x1; x <= fill_area->x2; x++) {
-//            dest_buf[x] = color;
-//        }
-//        dest_buf+=dest_width;    /*Go to the next line*/
-//    }
-//}
-
-
-#else /*Enable this file at the top*/
-
-/*This dummy typedef exists purely to silence -Wpedantic.*/
-typedef int keep_pedantic_happy;
 #endif
