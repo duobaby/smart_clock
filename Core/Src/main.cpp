@@ -8,19 +8,22 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 extern "C" void SystemClock_Config(void);
-extern int lvgl_thread_init(void);
+//extern int lvgl_thread_init(void);
+
+uint16_t a = 0;
 
 int main(void)
-{
+{   
+    
    // delay.init();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    GPIO_InitTypeDef GPIO_InitStruct;
-    GPIO_InitStruct.Pin = GPIO_PIN_13;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(GPIOC,&GPIO_InitStruct);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+//    __HAL_RCC_GPIOC_CLK_ENABLE();
+//    GPIO_InitTypeDef GPIO_InitStruct;
+//    GPIO_InitStruct.Pin = GPIO_PIN_13;
+//    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//    GPIO_InitStruct.Pull = GPIO_NOPULL;
+//    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+//    HAL_GPIO_Init(GPIOC,&GPIO_InitStruct);
+//    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
     // lcd_Dev.init();
     // touch_pad.init();
 
@@ -34,14 +37,14 @@ int main(void)
     while (1)
     {
         // 设置引脚为高电平
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 
         // // 延时一段时间
-        rt_thread_mdelay(500);
+       // rt_thread_mdelay(500);
 
         // // 设置引脚为低电平
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-
+        //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+        a++;
         // // 延时一段时间
         rt_thread_mdelay(500);
     }
@@ -58,16 +61,16 @@ void SystemClock_Config(void)
 
     /** Configure the main internal regulator output voltage
      */
-    __HAL_RCC_PWR_CLK_ENABLE();
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+//    __HAL_RCC_PWR_CLK_ENABLE();
+//    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
     /** Initializes the RCC Oscillators according to the specified parameters
      * in the RCC_OscInitTypeDef structure.
      */
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
     RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+//    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
     RCC_OscInitStruct.PLL.PLLM = 12;
     RCC_OscInitStruct.PLL.PLLN = 96;
     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;

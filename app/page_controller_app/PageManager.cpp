@@ -21,3 +21,14 @@ void left_init() {
 void right_init() {
     lv_obj_t *label = lv_label_create(right.screen);
 }
+
+
+
+
+
+
+
+
+
+
+
