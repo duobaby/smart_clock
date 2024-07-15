@@ -7,26 +7,30 @@
 #include "lvgl.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
-void SystemClock_Config(void);
+extern "C" void SystemClock_Config(void);
 extern int lvgl_thread_init(void);
 
 int main(void)
 {
-    HAL_Init();
+   // delay.init();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    GPIO_InitTypeDef GPIO_InitStruct;
+    GPIO_InitStruct.Pin = GPIO_PIN_13;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC,&GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+    // lcd_Dev.init();
+    // touch_pad.init();
 
-    SystemClock_Config();
-
-    delay.init();
-    lcd_Dev.init();
-    touch_pad.init();
-
-    lv_init();
-    lv_port_disp_init();
-    lv_port_indev_init();
-    //创建一个btn对象
-    lv_obj_t *btn = lv_btn_create(lv_scr_act());
-    lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
-    lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
+    // lv_init();
+    // lv_port_disp_init();
+    // lv_port_indev_init();
+    // //创建一个btn对象
+    // lv_obj_t *btn = lv_btn_create(lv_scr_act());
+    // lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
+    // lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
     while (1)
     {
         // 设置引脚为高电平

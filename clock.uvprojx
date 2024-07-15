@@ -14,16 +14,16 @@
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>ARMCM4</Device>
-          <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.6.0</PackID>
+          <Device>STM32F411RETx</Device>
+          <Vendor>STMicroelectronics</Vendor>
+          <PackID>Keil.STM32F4xx_DFP.2.14.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M4") CLOCK(12000000) ESEL ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x08000000,0x00080000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll></FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_512 -FS08000000 -FL080000 -FP0($$Device:STM32F411RETx$CMSIS\Flash\STM32F4xx_512.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile></RegisterFile>
+          <RegisterFile>$$Device:STM32F411RETx$Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile></SFDFile>
+          <SFDFile>$$Device:STM32F411RETx$CMSIS\SVD\STM32F411xx.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -110,13 +110,13 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments>-REMAP</SimDllArguments>
+          <SimDllArguments> -REMAP -MPU</SimDllArguments>
           <SimDlgDll>DCM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
+          <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments></TargetDllArguments>
+          <TargetDllArguments> -MPU</TargetDllArguments>
           <TargetDlgDll>TCM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -183,13 +183,13 @@
             <hadIRAM>1</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
-            <RvdsVP>0</RvdsVP>
+            <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>0</useUlib>
-            <EndSel>1</EndSel>
+            <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
@@ -249,8 +249,8 @@
               </IRAM>
               <IROM>
                 <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x40000</Size>
+                <StartAddress>0x8000000</StartAddress>
+                <Size>0x80000</Size>
               </IROM>
               <XRAM>
                 <Type>0</Type>
@@ -300,7 +300,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x40000</Size>
+                <Size>0x20000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>7</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F411xE,USE_HAL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>bsp\inc;Core\Inc;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\cmsis\Include;rtt;rtt\include;rtt\include\libc;rtt\components\finsh;lvgl\porting;lvgl\src;lvgl;thread_app\inc;app\page_app</IncludePath>
+              <IncludePath>bsp\inc;Core\Inc;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\cmsis\Include;rtt;rtt\include;rtt\include\libc;rtt\components\finsh;lvgl\porting;lvgl\src;lvgl;thread_app\inc;app\page_controller_app;app\thread_app;app\ui_app</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1618,24 +1618,14 @@
           <GroupName>thread_app/src</GroupName>
           <Files>
             <File>
-              <FileName>game_2048.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>app/game_app/game_2048.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stack.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>app/stack_app/stack.cpp</FilePath>
-            </File>
-            <File>
               <FileName>thread_lvgl.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>app/thread_app/thread_lvgl.cpp</FilePath>
             </File>
             <File>
-              <FileName>ui_page_home.cpp</FileName>
+              <FileName>PageManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>app/page_app/ui_page_home.cpp</FilePath>
+              <FilePath>app/page_controller_app/PageManager.cpp</FilePath>
             </File>
           </Files>
         </Group>

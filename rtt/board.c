@@ -31,20 +31,20 @@ extern void SystemCoreClockUpdate(void);
 // core clock.
 extern uint32_t SystemCoreClock;
 
-//static uint32_t _SysTick_Config(rt_uint32_t ticks)
-//{
-//    if ((ticks - 1) > 0xFFFFFF)
-//    {
-//        return 1;
-//    }
-//    
-//    _SYSTICK_LOAD = ticks - 1; 
-//    _SYSTICK_PRI = 0xFF;
-//    _SYSTICK_VAL  = 0;
-//    _SYSTICK_CTRL = 0x07;  
-//    
-//    return 0;
-//}
+static uint32_t _SysTick_Config(rt_uint32_t ticks)
+{
+    if ((ticks - 1) > 0xFFFFFF)
+    {
+        return 1;
+    }
+   
+    _SYSTICK_LOAD = ticks - 1; 
+    _SYSTICK_PRI = 0xFF;
+    _SYSTICK_VAL  = 0;
+    _SYSTICK_CTRL = 0x07;  
+   
+   return 0;
+}
 
 #if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
 #define RT_HEAP_SIZE 1024
@@ -63,13 +63,20 @@ RT_WEAK void *rt_heap_end_get(void)
 /**
  * This function will initial your board.
  */
+void SystemClock_Config(void);
 void rt_hw_board_init()
 {
+	HAL_Init();
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+    SystemClock_Config();
     /* System Clock Update */
-//    SystemCoreClockUpdate();
-//    
-//    /* System Tick Configuration */	
+    SystemCoreClockUpdate();
     
+    /* System Tick Configuration */
+    _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 //    uart_init(uart1,115200);
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
@@ -88,7 +95,7 @@ void SysTick_Handler(void)
 
     rt_tick_increase();
     HAL_IncTick();
-    lv_tick_inc(1);
+    // lv_tick_inc(1);
     /* leave interrupt */
     rt_interrupt_leave();
 }
