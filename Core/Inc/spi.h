@@ -11,7 +11,7 @@ protected:
     SPI_TypeDef *spi_x;
 public: 
     spi_io(SPI_TypeDef *spi) : spi_x(spi) {}
-    virtual void init();
+    void init();
 };
 
 class spi_dev : public spi_io{
@@ -34,7 +34,7 @@ public:
         spi_dev(SPI_TypeDef *spi,uint32_t spi_mode) 
             :spi_x(spi),spi_mode_x(spi_mode){}
     #endif
-    virtual void init(void);
+    void init(void);
 };
 
 extern SPI_HandleTypeDef spi1;

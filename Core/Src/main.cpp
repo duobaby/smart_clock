@@ -6,9 +6,11 @@
 #include "thread_config.h"
 #include "lvgl.h"
 extern "C" void SystemClock_Config(void);
-
+#define WHITE         	 0xFFFF
+#define BLACK         	 0x0000	  
 int main(void)
 {   
+    delay.init();
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     __HAL_RCC_GPIOC_CLK_ENABLE();
     GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -18,7 +20,13 @@ int main(void)
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
     // thread_key.create();
     lcd_Dev.init();
-    touch_pad.init();
+   // lcd_Dev.LCD_Fill(0,0,LCD_W,LCD_H-40,BLACK);
+	delay.ms(10);
+    lcd_Dev.LCD_ShowString(240/2-40,280/2,(const unsigned char *)"hello",WHITE,BLACK,16,0);
+    lcd_Dev.LCD_Fill(0,0,240,280-40,WHITE);
+    delay.ms(1000);
+	lcd_Dev.LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
+   // touch_pad.init();
     //创建一个btn对象
 
     while (1) {

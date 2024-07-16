@@ -26,6 +26,10 @@ public:
     void dis_flush(uint16_t xsta,uint16_t ysta,uint16_t xend,uint16_t yend,uint16_t *color_p);
     void sleep_in(void);
     void sleep_out(void);
+    void LCD_ShowString(unsigned short x,unsigned short y,const unsigned char *p,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
+    void LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
+    void LCD_DrawPoint(unsigned short x,unsigned short y,unsigned short color);
+    void LCD_Fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color);
 };
 
 extern lcd_dev lcd_Dev;
