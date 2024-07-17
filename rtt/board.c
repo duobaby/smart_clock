@@ -73,10 +73,10 @@ void rt_hw_board_init()
   /* Configure the system clock */
     SystemClock_Config();
     /* System Clock Update */
-    SystemCoreClockUpdate();
+    // SystemCoreClockUpdate();
     
-    /* System Tick Configuration */
-    _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
+    // /* System Tick Configuration */
+    // _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 //    uart_init(uart1,115200);
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT

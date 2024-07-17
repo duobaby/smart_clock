@@ -16,16 +16,7 @@ void MX_DMA_Init(void)
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
 
 }
-void DMA2_Stream2_IRQHandler(void)
-{
-    /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
-    /* USER CODE END DMA2_Stream2_IRQn 0 */
-    HAL_DMA_IRQHandler(&spi_dma1);
-    /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
-
-    /* USER CODE END DMA2_Stream2_IRQn 1 */
-}
 void spi_dev::init(void) {
     spi_io::init();
     spi_dev::spi_handle_x->Instance = spi_dev::spi_io::spi_x;
