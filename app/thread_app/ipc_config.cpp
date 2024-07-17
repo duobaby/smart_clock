@@ -1,3 +1,6 @@
+#ifndef _IPC_CONFIG_CPP_
+#define _IPC_CONFIG_CPP_
+
 #include <rtthread.h>
 
 class ipc_sem_config {
@@ -23,15 +26,28 @@ public:
     void release() {
         rt_sem_release(sem);
     }
-    void delete_sem() {
+    void sem_delete() {
         rt_sem_delete(sem);
     }
     void take(rt_tick_t timeout) {
         rt_sem_take(sem, RT_WAITING_FOREVER);
     }
-} 
+};
 
 ipc_sem_config ipc_sem_key("sem_key", 0, RT_WAITING_FOREVER);
-void ipc_sem_create() {
-    ipc_sem_key.create();
-}
+
+// void ipc_sem_create() {
+//     ipc_sem_key.create();
+// }
+
+
+
+
+
+
+
+
+
+
+
+#endif // !_IPC_CONFIG_CPP_

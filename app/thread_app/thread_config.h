@@ -12,7 +12,7 @@
 #define __THREAD_CONFIG_H
 
 #include "rtthread.h"
-
+#include "ipc_config.cpp"
 /**
  * @brief thread config，快速创建线程，
  * @use   thread.create()
@@ -56,5 +56,10 @@ public:
 extern thread_config thread_lvgl;
 extern thread_config thread_key;
 
+/**
+ * @brief ipc_sem extern 
+ * 
+ */
+extern ipc_sem_config ipc_sem_key;
 
 #endif // !__THREAD_CONFIG_H

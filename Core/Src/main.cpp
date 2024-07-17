@@ -10,7 +10,7 @@ extern "C" void SystemClock_Config(void);
 #define BLACK         	 0x0000	  
 int main(void)
 {   
-    delay.init();
+    
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     __HAL_RCC_GPIOC_CLK_ENABLE();
     GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -18,17 +18,26 @@ int main(void)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-    // thread_key.create();
-    lcd_Dev.init();
-   // lcd_Dev.LCD_Fill(0,0,LCD_W,LCD_H-40,BLACK);
-	delay.ms(10);
-    lcd_Dev.LCD_ShowString(240/2-40,280/2,(const unsigned char *)"hello",WHITE,BLACK,16,0);
-    lcd_Dev.LCD_Fill(0,0,240,280-40,WHITE);
-    delay.ms(1000);
-	lcd_Dev.LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
+//     delay.init();
+//     // thread_key.create();
+//     lcd_Dev.init();
+
+//    // lcd_Dev.LCD_Fill(0,0,LCD_W,LCD_H-40,BLACK);
+// 	delay.ms(10);
+//     lcd_Dev.LCD_ShowString(240/2-40,280/2,(const unsigned char *)"hello",WHITE,BLACK,16,0);
+//     lcd_Dev.LCD_Fill(0,0,240,280-40,WHITE);
+//     delay.ms(1000);
+// 	lcd_Dev.LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
+    MX_SPI1_Init();
+  	LCD_Init();
+	LCD_Fill(0,0,LCD_W,LCD_H,BLACK);
+	rt_thread_mdelay(10);
+	LCD_ShowString(72,LCD_H/2-20,(uint8_t*)"Welcome!",WHITE,BLACK,24,0);//12*6,16*8,24*12,32*16
+	LCD_ShowString(42,LCD_H/2+48-20,(uint8_t*)"OV-Watch V2.3",WHITE,BLACK,24,0);
+	rt_thread_mdelay(1000);
+	LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
    // touch_pad.init();
     //创建一个btn对象
-
     while (1) {
         // 设置引脚为高电平
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
