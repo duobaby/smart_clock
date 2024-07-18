@@ -8,7 +8,7 @@
  * @brief 所用hz
  * 
  */
-#define lcd_bl 1000
+#define lcd_bl 5000
 #define pwm_max 100
 #define clock_max 50000000
 class pwm_dev {

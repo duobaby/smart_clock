@@ -174,13 +174,12 @@ void rt_thread_idle_excute(void)
     }
 #endif
 }
-
+#include "lvgl.h"
 extern void rt_system_power_manager(void);
 static void rt_thread_idle_entry(void *parameter)
 {
     while (1)
     {
-
 #ifdef RT_USING_IDLE_HOOK
         rt_size_t i;
 

@@ -4,6 +4,18 @@
 TIM_HandleTypeDef htim2;
 pwm_dev lcd_bl_pwm(TIM2, TIM_CHANNEL_1, lcd_bl, &htim2);
 void pwm_dev::init() {
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    /**TIM2 GPIO Configuration
+    PA15     ------> TIM2_CH1
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_15;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    __HAL_RCC_TIM2_CLK_ENABLE();
 
     TIM_MasterConfigTypeDef sMasterConfig = {0};
     TIM_OC_InitTypeDef sConfigOC = {0};
@@ -32,6 +44,7 @@ void pwm_dev::init() {
     {
         Error_Handler();
     }
+    HAL_TIM_PWM_Start(tim_handle,channel);
 }
 
 void pwm_dev::set_duty(uint8_t duty) {
