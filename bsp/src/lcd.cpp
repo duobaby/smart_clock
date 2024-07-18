@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "rtthread.h"
+
 #define lcd_dev_config SPI1,SPI_MODE_MASTER,&spi1,DMA2_Stream2,DMA_CHANNEL_2,DMA_MEMORY_TO_PERIPH,&spi_dma1
 
 lcd_dev lcd_Dev(lcd_dev_config);

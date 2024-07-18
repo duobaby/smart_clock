@@ -43,6 +43,9 @@
           },
           {
             "path": "Core/Src/system_stm32f4xx.c"
+          },
+          {
+            "path": "Core/Src/pwm.cpp"
           }
         ],
         "folders": []
