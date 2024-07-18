@@ -9,9 +9,9 @@
 extern "C" void SystemClock_Config(void);
 #define WHITE         	 0xFFFF
 #define BLACK         	 0x0000	  
+
 int main(void)
-{   
-    
+{     
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     __HAL_RCC_GPIOC_CLK_ENABLE();
     GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -20,7 +20,7 @@ int main(void)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
     delay.init();
-//     // thread_key.create();
+    
     lcd_Dev.init();
 
     lcd_Dev.LCD_Fill(0,0,LCD_W,LCD_H,BLACK);
@@ -39,7 +39,9 @@ int main(void)
 	// LCD_ShowString(42,LCD_H/2+48-20,(uint8_t*)"OV-Watch V2.3",WHITE,BLACK,24,0);
 	// delay.ms(1000);
 	// LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
-   // touch_pad.init();
+    touch_pad.init();
+    // thread_lvgl.create();
+    // thread_key.create();
     //创建一个btn对象
     while (1) {
         // 设置引脚为高电平
