@@ -6,46 +6,40 @@
 #include "thread_config.h"
 #include "lvgl.h"
 #include "pwm.h"
+#include "gpio.h"
+#include "uart.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 
 static void led_init();
 extern "C" void SystemClock_Config(void);
-#define WHITE         	 0xFFFF
-#define BLACK         	 0x0000	  
 
 int main(void)
-{     
+{   
+    gpio_dev led(GPIOC, GPIO_PIN_13,GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_LOW);
+    led.init();
+    uart_terminal.init();
     delay.init();
-    led_init();
-    lcd_Dev.init();
+    lcd.init();
     lcd_bl_pwm.init();
-    lcd_Dev.LCD_Fill(0,0,LCD_W,LCD_H,BLACK);
+    lcd.fill(0,0,LCD_W,LCD_H);
 	delay.ms(10);
     lcd_bl_pwm.set_duty(50);
-    lcd_Dev.LCD_ShowString(72,LCD_H/2-20,(uint8_t*)"Welcome!",WHITE,BLACK,24,0);
-    lcd_Dev.LCD_ShowString(42,LCD_H/2+48-20,(uint8_t*)"OV-Watch V2.3",WHITE,BLACK,24,0);
+    lcd.putstring(72,LCD_H/2-20,(uint8_t*)"Genshen!",24,0);
+    lcd.putstring(42,LCD_H/2+48-20,(uint8_t*)"start !!!",24,0);
     delay.ms(1000);
-	lcd_Dev.LCD_Fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20,BLACK);
+	lcd.fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20);
 
-  //  touch_pad.init();
+    touch_pad.init();
     thread_lvgl.create();
-    // thread_key.create();
+    thread_key.create();
     while (1) {
-        HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+        led.toggle();
         rt_thread_mdelay(500);
     }
 }
 
-static void led_init() {
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    GPIO_InitStruct.Pin = GPIO_PIN_13;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-}
+
 /**
   * @brief System Clock Configuration
   * @retval None

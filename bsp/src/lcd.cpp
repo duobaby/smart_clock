@@ -7,7 +7,7 @@
 
 #define lcd_dev_config SPI1,SPI_MODE_MASTER,&spi1,DMA2_Stream2,DMA_CHANNEL_2,DMA_MEMORY_TO_PERIPH,&spi_dma1
 
-lcd_dev lcd_Dev(lcd_dev_config);
+lcd_dev lcd(lcd_dev_config);
 void lcd_dev::lcd_io::init(void) {
     GPIO_InitTypeDef lcd_gpio = {0};
 	
@@ -46,94 +46,94 @@ void lcd_dev::init(void)
 	LCD_RES_Set();
 	rt_thread_mdelay(100);
 	
-	LCD_WR_REG(0x11); 
+	write_regsiter(0x11); 
 	rt_thread_mdelay(120); 
-	LCD_WR_REG(0x36); 
-	if(USE_HORIZONTAL==0)LCD_WR_DATA8(0x00);
-	else if(USE_HORIZONTAL==1)LCD_WR_DATA8(0xC0);
-	else if(USE_HORIZONTAL==2)LCD_WR_DATA8(0x70);
-	else LCD_WR_DATA8(0xA0);
+	write_regsiter(0x36); 
+	if(USE_HORIZONTAL==0)write_bit8(0x00);
+	else if(USE_HORIZONTAL==1)write_bit8(0xC0);
+	else if(USE_HORIZONTAL==2)write_bit8(0x70);
+	else write_bit8(0xA0);
 
-	LCD_WR_REG(0x3A);
-	LCD_WR_DATA8(0x05);
+	write_regsiter(0x3A);
+	write_bit8(0x05);
 
-	LCD_WR_REG(0xB2);
-	LCD_WR_DATA8(0x0C);
-	LCD_WR_DATA8(0x0C);
-	LCD_WR_DATA8(0x00);
-	LCD_WR_DATA8(0x33);
-	LCD_WR_DATA8(0x33); 
+	write_regsiter(0xB2);
+	write_bit8(0x0C);
+	write_bit8(0x0C);
+	write_bit8(0x00);
+	write_bit8(0x33);
+	write_bit8(0x33); 
 
-	LCD_WR_REG(0xB7); 
-	LCD_WR_DATA8(0x35);  
+	write_regsiter(0xB7); 
+	write_bit8(0x35);  
 
-	LCD_WR_REG(0xBB);
-	LCD_WR_DATA8(0x19);
+	write_regsiter(0xBB);
+	write_bit8(0x19);
 
-	LCD_WR_REG(0xC0);
-	LCD_WR_DATA8(0x2C);
+	write_regsiter(0xC0);
+	write_bit8(0x2C);
 
-	LCD_WR_REG(0xC2);
-	LCD_WR_DATA8(0x01);
+	write_regsiter(0xC2);
+	write_bit8(0x01);
 
-	LCD_WR_REG(0xC3);
-	LCD_WR_DATA8(0x12);   
+	write_regsiter(0xC3);
+	write_bit8(0x12);   
 
-	LCD_WR_REG(0xC4);
-	LCD_WR_DATA8(0x20);  
+	write_regsiter(0xC4);
+	write_bit8(0x20);  
 
-	LCD_WR_REG(0xC6); 
-	LCD_WR_DATA8(0x0F);    
+	write_regsiter(0xC6); 
+	write_bit8(0x0F);    
 
-	LCD_WR_REG(0xD0); 
-	LCD_WR_DATA8(0xA4);
-	LCD_WR_DATA8(0xA1);
+	write_regsiter(0xD0); 
+	write_bit8(0xA4);
+	write_bit8(0xA1);
 
-	LCD_WR_REG(0xE0);
-	LCD_WR_DATA8(0xD0);
-	LCD_WR_DATA8(0x04);
-	LCD_WR_DATA8(0x0D);
-	LCD_WR_DATA8(0x11);
-	LCD_WR_DATA8(0x13);
-	LCD_WR_DATA8(0x2B);
-	LCD_WR_DATA8(0x3F);
-	LCD_WR_DATA8(0x54);
-	LCD_WR_DATA8(0x4C);
-	LCD_WR_DATA8(0x18);
-	LCD_WR_DATA8(0x0D);
-	LCD_WR_DATA8(0x0B);
-	LCD_WR_DATA8(0x1F);
-	LCD_WR_DATA8(0x23);
+	write_regsiter(0xE0);
+	write_bit8(0xD0);
+	write_bit8(0x04);
+	write_bit8(0x0D);
+	write_bit8(0x11);
+	write_bit8(0x13);
+	write_bit8(0x2B);
+	write_bit8(0x3F);
+	write_bit8(0x54);
+	write_bit8(0x4C);
+	write_bit8(0x18);
+	write_bit8(0x0D);
+	write_bit8(0x0B);
+	write_bit8(0x1F);
+	write_bit8(0x23);
 
-	LCD_WR_REG(0xE1);
-	LCD_WR_DATA8(0xD0);
-	LCD_WR_DATA8(0x04);
-	LCD_WR_DATA8(0x0C);
-	LCD_WR_DATA8(0x11);
-	LCD_WR_DATA8(0x13);
-	LCD_WR_DATA8(0x2C);
-	LCD_WR_DATA8(0x3F);
-	LCD_WR_DATA8(0x44);
-	LCD_WR_DATA8(0x51);
-	LCD_WR_DATA8(0x2F);
-	LCD_WR_DATA8(0x1F);
-	LCD_WR_DATA8(0x1F);
-	LCD_WR_DATA8(0x20);
-	LCD_WR_DATA8(0x23);
+	write_regsiter(0xE1);
+	write_bit8(0xD0);
+	write_bit8(0x04);
+	write_bit8(0x0C);
+	write_bit8(0x11);
+	write_bit8(0x13);
+	write_bit8(0x2C);
+	write_bit8(0x3F);
+	write_bit8(0x44);
+	write_bit8(0x51);
+	write_bit8(0x2F);
+	write_bit8(0x1F);
+	write_bit8(0x1F);
+	write_bit8(0x20);
+	write_bit8(0x23);
 
-	LCD_WR_REG(0x21); 
+	write_regsiter(0x21); 
 
-	LCD_WR_REG(0x29); 
+	write_regsiter(0x29); 
 }
-void lcd_dev::LCD_Fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color)
+void lcd_dev::fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color)
 {          
     unsigned short i,j; 
-    LCD_Address_Set(xsta+OFFSET_X,ysta+OFFSET_Y,xend+OFFSET_X-1,yend-1+OFFSET_Y);//设置显示范围
+    addr_set(xsta+OFFSET_X,ysta+OFFSET_Y,xend+OFFSET_X-1,yend-1+OFFSET_Y);//设置显示范围
     for(i=ysta;i<yend;i++)
     {		
         for(j=xsta;j<xend;j++)
         {
-            LCD_WR_DATA(color);
+            write_bit16(color);
         }
     }					  	    
 }
@@ -143,13 +143,13 @@ void lcd_dev::LCD_Fill(unsigned short xsta,unsigned short ysta,unsigned short xe
                 color 点的颜色
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_DrawPoint(unsigned short x,unsigned short y,unsigned short color)
+void lcd_dev::drawpoint(unsigned short x,unsigned short y,unsigned short color)
 {
-	LCD_Address_Set(x,y,x,y);//设置光标位置 
-	LCD_WR_DATA(color);
+	addr_set(x,y,x,y);//设置光标位置 
+	write_bit16(color);
 } 
 
-const unsigned char ascii_2412[][48]={
+static const unsigned char ascii_2412[][48]={
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*" ",0*/
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x40,0x00,0x20,0x00,0x20,0x00,0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*"!",1*/
 {0x00,0x00,0x00,0x00,0x60,0x06,0x60,0x06,0x30,0x03,0x98,0x01,0x88,0x00,0x44,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*""",2*/
@@ -256,7 +256,7 @@ const unsigned char ascii_2412[][48]={
                 mode:  0非叠加模式  1叠加模式
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode)
+void lcd_dev::putschar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode)
 {
 	unsigned char temp,sizex,t,m=0;
 	unsigned short i,TypefaceNum;//一个字符所占字节大小
@@ -264,7 +264,7 @@ void lcd_dev::LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,u
 	sizex=sizey/2;
 	TypefaceNum=(sizex/8+((sizex%8)?1:0))*sizey;
 	num=num-' ';    //得到偏移后的值
-	LCD_Address_Set(x,y,x+sizex-1,y+sizey-1);  //设置光标位置 
+	addr_set(x,y,x+sizex-1,y+sizey-1);  //设置光标位置 
 	for(i=0;i<TypefaceNum;i++)
 	{ 
 		if(sizey==12)temp=ascii_2412[num][i];		       //调用6x12字体
@@ -276,8 +276,8 @@ void lcd_dev::LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,u
 		{
 			if(!mode)//非叠加模式
 			{
-				if(temp&(0x01<<t))LCD_WR_DATA(fc);
-				else LCD_WR_DATA(bc);
+				if(temp&(0x01<<t))write_bit16(fc);
+				else write_bit16(bc);
 				m++;
 				if(m%sizex==0)
 				{
@@ -287,7 +287,7 @@ void lcd_dev::LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,u
 			}
 			else//叠加模式
 			{
-				if(temp&(0x01<<t))LCD_DrawPoint(x,y,fc);//画一个点
+				if(temp&(0x01<<t))drawpoint(x,y,fc);//画一个点
 				x++;
 				if((x-x0)==sizex)
 				{
@@ -311,11 +311,11 @@ void lcd_dev::LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,u
                 mode:  0非叠加模式  1叠加模式
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_ShowString(unsigned short x,unsigned short y,const unsigned char *p,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode)
+void lcd_dev::putstring(unsigned short x,unsigned short y,const unsigned char *p,unsigned char sizey,unsigned char mode,unsigned short fc,unsigned short bc)
 {         
 	while(*p!='\0')
 	{       
-		LCD_ShowChar(x,y,*p,fc,bc,sizey,mode);
+		putschar(x,y,*p,fc,bc,sizey,mode);
 		x+=sizey/2;
 		p++;
 	}  
@@ -327,7 +327,7 @@ void lcd_dev::dis_flush(uint16_t xsta,uint16_t ysta,uint16_t xend,uint16_t yend,
 	width = xend-xsta+1;
 	height = yend-ysta+1;
 	uint32_t size = width * height;
-	LCD_Address_Set( xsta,ysta + OFFSET_Y, xend, yend + OFFSET_Y);
+	addr_set( xsta,ysta + OFFSET_Y, xend, yend + OFFSET_Y);
 	
 	spi_dev::spi_handle_x->Init.DataSize = SPI_DATASIZE_16BIT;
 	spi_dev::spi_handle_x->Instance->CR1|=SPI_CR1_DFF;
@@ -339,13 +339,13 @@ void lcd_dev::dis_flush(uint16_t xsta,uint16_t ysta,uint16_t xend,uint16_t yend,
 }
 void lcd_dev::sleep_in(void)
 {
-	LCD_WR_REG(0x10);
+	write_regsiter(0x10);
 	rt_thread_mdelay(100);
 }
 
 void lcd_dev::sleep_out(void)
 {
-	LCD_WR_REG(0x11);
+	write_regsiter(0x11);
 	rt_thread_mdelay(100);
 }
 /******************************************************************************
@@ -353,7 +353,7 @@ void lcd_dev::sleep_out(void)
       入口数据：dat  要写入的串行数据
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_Writ_Bus(uint8_t dat) 
+void lcd_dev::write_bus(uint8_t dat) 
 {	
 	HAL_SPI_Transmit(spi_dev::spi_handle_x,&dat,1,1);
 }
@@ -362,16 +362,16 @@ void lcd_dev::LCD_Writ_Bus(uint8_t dat)
       入口数据：dat 写入的数据
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_WR_DATA8(uint8_t dat)
+void lcd_dev::write_bit8(uint8_t dat)
 {
-	LCD_Writ_Bus(dat);
+	write_bus(dat);
 }
 /******************************************************************************
       函数说明：LCD写入数据
       入口数据：dat 写入的数据
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_WR_DATA(uint16_t dat)
+void lcd_dev::write_bit16(uint16_t dat)
 {
 	uint8_t temp[2];
 	temp[0]=(dat>>8)&0xff;
@@ -383,10 +383,10 @@ void lcd_dev::LCD_WR_DATA(uint16_t dat)
       入口数据：dat 写入的命令
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_WR_REG(uint8_t dat)
+void lcd_dev::write_regsiter(uint8_t dat)
 {
 	LCD_DC_Clr();//写命令
-	LCD_Writ_Bus(dat);
+	write_bus(dat);
 	LCD_DC_Set();//写数据
 }
 
@@ -397,14 +397,14 @@ void lcd_dev::LCD_WR_REG(uint8_t dat)
                 y1,y2 设置行的起始和结束地址
       返回值：  无
 ******************************************************************************/
-void lcd_dev::LCD_Address_Set(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2)
+void lcd_dev::addr_set(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2)
 {
-	LCD_WR_REG(0x2a);//列地址设置
-	LCD_WR_DATA(x1);
-	LCD_WR_DATA(x2);
-	LCD_WR_REG(0x2b);//行地址设置
-	LCD_WR_DATA(y1);
-	LCD_WR_DATA(y2);
-	LCD_WR_REG(0x2c);//储存器写
+	write_regsiter(0x2a);//列地址设置
+	write_bit16(x1);
+	write_bit16(x2);
+	write_regsiter(0x2b);//行地址设置
+	write_bit16(y1);
+	write_bit16(y2);
+	write_regsiter(0x2c);//储存器写
 }
 

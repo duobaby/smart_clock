@@ -12,11 +12,11 @@ public:
 
 class lcd_dev : public lcd_io , public spi_dev{
 private:
-    void LCD_Writ_Bus(uint8_t dat);
-    void LCD_WR_DATA8(uint8_t dat);
-    void LCD_WR_DATA(uint16_t dat);
-    void LCD_WR_REG(uint8_t dat);
-    void LCD_Address_Set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+    void write_bus(uint8_t dat);
+    void write_bit8(uint8_t dat);
+    void write_bit16(uint16_t dat);
+    void write_regsiter(uint8_t dat);
+    void addr_set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 public:
     lcd_dev(SPI_TypeDef *spi,uint32_t spi_mode,SPI_HandleTypeDef * spi_handle, \
             DMA_Stream_TypeDef *dma_stream,uint32_t dma_channel,uint32_t dma_direction,DMA_HandleTypeDef *spi_dma_handle) \
@@ -26,13 +26,13 @@ public:
     void dis_flush(uint16_t xsta,uint16_t ysta,uint16_t xend,uint16_t yend,uint16_t *color_p);
     void sleep_in(void);
     void sleep_out(void);
-    void LCD_ShowString(unsigned short x,unsigned short y,const unsigned char *p,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
-    void LCD_ShowChar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
-    void LCD_DrawPoint(unsigned short x,unsigned short y,unsigned short color);
-    void LCD_Fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color);
+    void putstring(unsigned short x, unsigned short y, const unsigned char *p, unsigned char sizey, unsigned char mode, unsigned short fc = 0xffff, unsigned short bc = 0x0000);
+    void putschar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
+    void drawpoint(unsigned short x,unsigned short y,unsigned short color);
+    void fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color=0xffff);
 };
 
-extern lcd_dev lcd_Dev;
+extern lcd_dev lcd;
 
 #define USE_HORIZONTAL 1 //设置横屏或者竖屏显示 0或1为竖屏 2或3为横屏
 
@@ -70,7 +70,5 @@ extern lcd_dev lcd_Dev;
 #define LCD_CS_Clr()   HAL_GPIO_WritePin(CS_PORT,CS_PIN,GPIO_PIN_RESET)//CS
 #define LCD_CS_Set()   HAL_GPIO_WritePin(CS_PORT,CS_PIN,GPIO_PIN_SET)
 
-void LCD_Init(void);
-void LCD_Fill(unsigned short xsta, unsigned short ysta, unsigned short xend, unsigned short yend, unsigned short color);
-void LCD_ShowString(unsigned short x, unsigned short y, const unsigned char *p, unsigned short fc, unsigned short bc, unsigned char sizey, unsigned char mode);
+
 #endif // !__LCD_H_

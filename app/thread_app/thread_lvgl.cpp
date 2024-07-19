@@ -28,7 +28,7 @@ static void lvgl_thread_entry(void *parameter)
     lv_obj_set_style_bg_color(btn, lv_color_hex(0xfffffff), 0);
     lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
     while (1) {
-        lcd_Dev.LCD_ShowString(72,280/2-20,(uint8_t*)"Welcome!",0xFFFF,0x0000,24,0);
+        lcd.putstring(72,280/2-20,(uint8_t*)"Welcome!",24,0);
         lv_timer_handler();
         thread_lvgl.sleep(5);
     }

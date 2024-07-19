@@ -1124,10 +1124,17 @@ rt_device_t rt_console_set_device(const char *name)
 }
 #endif
 
+
+#include "main.h"
 RT_WEAK void rt_hw_console_output(const char *str)
 {   
+
     rt_enter_critical();
     /* empty console output */
+    extern UART_HandleTypeDef uart1;
+    while (*str != '\0') {
+        HAL_UART_Transmit(&uart1, (unsigned char *)(str++), 1, 1000);
+    }
 
     rt_exit_critical();
 }
