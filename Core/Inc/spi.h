@@ -40,9 +40,4 @@ public:
 extern SPI_HandleTypeDef spi1;
 extern DMA_HandleTypeDef spi_dma1;
 
-extern SPI_HandleTypeDef hspi1;
-extern DMA_HandleTypeDef hdma_spi1_tx;
-
-void MX_SPI1_Init(void);
-void MX_DMA_Init(void);
 #endif // !__SPI_H_
