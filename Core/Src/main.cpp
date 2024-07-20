@@ -13,24 +13,29 @@
 
 static void led_init();
 extern "C" void SystemClock_Config(void);
-
+gpio_dev led(GPIOC, GPIO_PIN_13,GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_LOW);
 int main(void)
 {   
-    gpio_dev led(GPIOC, GPIO_PIN_13,GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_LOW);
     led.init();
-    uart_terminal.init();
+   // uart_terminal.init();
     delay.init();
     lcd.init();
     lcd_bl_pwm.init();
+    lcd_bl_pwm.set_duty(50);
+    touch_pad.init();
+    
     lcd.fill(0,0,LCD_W,LCD_H);
 	delay.ms(10);
-    lcd_bl_pwm.set_duty(50);
+    
     lcd.putstring(72,LCD_H/2-20,(uint8_t*)"Genshen!",24,0);
-    lcd.putstring(42,LCD_H/2+48-20,(uint8_t*)"start !!!",24,0);
+    lcd.putstring(60,LCD_H/2+48-20,(uint8_t*)"start !!!",24,0);
     delay.ms(1000);
 	lcd.fill(0,LCD_H/2-24-20,LCD_W,LCD_H/2+49-20);
 
-    touch_pad.init();
+    lv_init();
+    lv_port_disp_init();
+    lv_port_indev_init();
+
     thread_lvgl.create();
     thread_key.create();
     while (1) {

@@ -8,7 +8,7 @@ static void key_thread_entry(void *parameter);
  * @brief thread config
  *            obj         name        entry    stack_size  priority  tick
  */
-thread_config thread_key("key", key_thread_entry, 256, 6, 2);
+thread_config thread_key("key", key_thread_entry, 256, 12, 20);
 
 /**
  * @brief 

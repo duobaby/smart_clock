@@ -29,7 +29,7 @@ public:
     void putstring(unsigned short x, unsigned short y, const unsigned char *p, unsigned char sizey, unsigned char mode, unsigned short fc = 0xffff, unsigned short bc = 0x0000);
     void putschar(unsigned short x,unsigned short y,unsigned char num,unsigned short fc,unsigned short bc,unsigned char sizey,unsigned char mode);
     void drawpoint(unsigned short x,unsigned short y,unsigned short color);
-    void fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color=0xffff);
+    void fill(unsigned short xsta,unsigned short ysta,unsigned short xend,unsigned short yend,unsigned short color=0x0000);
 };
 
 extern lcd_dev lcd;

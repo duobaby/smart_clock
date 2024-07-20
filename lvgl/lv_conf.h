@@ -88,7 +88,7 @@
 #define LV_TICK_CUSTOM 1
 #if LV_TICK_CUSTOM
     #define LV_TICK_CUSTOM_INCLUDE "rtthread.h"         /*Header for the system time function*/
-    #define LV_TICK_CUSTOM_SYS_TIME_EXPR (rt_tick_from_millisecond(1))    /*Expression evaluating to current system time in ms*/
+    #define LV_TICK_CUSTOM_SYS_TIME_EXPR (rt_tick_get())    /*Expression evaluating to current system time in ms*/
 #endif   /*LV_TICK_CUSTOM*/
 
 /*Default Dot Per Inch. Used to initialize default sizes such as widgets sized, style paddings.
@@ -534,7 +534,7 @@
  *----------*/
 
 /*A simple, impressive and very complete theme*/
-#define LV_USE_THEME_DEFAULT 0
+#define LV_USE_THEME_DEFAULT 1
 #if LV_USE_THEME_DEFAULT
 
     /*0: Light mode; 1: Dark mode*/
