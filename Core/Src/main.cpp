@@ -17,7 +17,7 @@ gpio_dev led(GPIOC, GPIO_PIN_13,GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_
 int main(void)
 {   
     led.init();
-   // uart_terminal.init();
+    
     delay.init();
     lcd.init();
     lcd_bl_pwm.init();

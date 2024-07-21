@@ -3,10 +3,11 @@
 
 extern "C" {
     UART_HandleTypeDef uart1;
+    
 }
 uart_dev uart_terminal(USART1, 115200, &uart1);
-
 void uart_dev::init() {
+    io_init();
     uart_handle->Instance = uart;
     uart_handle->Init.BaudRate = baud;
     uart_handle->Init.WordLength = USART_WORDLENGTH_8B;
@@ -24,6 +25,7 @@ void uart_dev::io_init() {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     if (uart == USART1) {
         __HAL_RCC_GPIOA_CLK_ENABLE();
+        __HAL_RCC_USART1_CLK_ENABLE();
         GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
         GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
         GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -40,4 +42,8 @@ void uart_dev::io_init() {
         GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
         HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
     }
+}
+extern "C" void terminal_uartinit();
+void terminal_uartinit() {
+    uart_terminal.init();
 }

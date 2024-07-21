@@ -74,7 +74,8 @@ void rt_hw_board_init()
     SystemClock_Config();
     /* System Clock Update */
     //SystemCoreClockUpdate();
-    
+    void terminal_uartinit();
+    terminal_uartinit();
     // /* System Tick Configuration */
    //  _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 //    uart_init(uart1,115200);
@@ -95,7 +96,6 @@ void SysTick_Handler(void)
 
     rt_tick_increase();
     HAL_IncTick();
-    //lv_tick_inc(1);
     /* leave interrupt */
     rt_interrupt_leave();
 }
