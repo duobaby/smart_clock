@@ -48,10 +48,10 @@
             "path": "Core/Src/pwm.cpp"
           },
           {
-            "path": "Core/Src/gpio.cpp"
+            "path": "Core/Src/uart.cpp"
           },
           {
-            "path": "Core/Src/uart.cpp"
+            "path": "Core/Src/gpio.cpp"
           }
         ],
         "folders": []
@@ -109,6 +109,9 @@
           },
           {
             "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"
+          },
+          {
+            "path": "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_usart.c"
           }
         ],
         "folders": []
@@ -131,6 +134,9 @@
               },
               {
                 "path": "app/thread_app/ipc_config.cpp"
+              },
+              {
+                "path": "app/ui_app/page_home.cpp"
               }
             ],
             "folders": []

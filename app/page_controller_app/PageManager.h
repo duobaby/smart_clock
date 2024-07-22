@@ -31,14 +31,13 @@ typedef struct {
 }page_t;
 
 class pagemanager {
-protected:
-    lv_obj_t *screen;  //
 private:
     uint8_t size;
     page_t *stack = new page_t[size];
 public:
-    pagemanager(lv_obj_t *screen, const uint8_t sizee, void (*ui_init)()) 
-        : screen(screen), size(sizee), ui_init(ui_init) {
+    lv_obj_t *screen;
+    pagemanager(lv_obj_t *screen, const uint8_t size, void (*ui_init)()) 
+        : screen(screen), size(size), ui_init(ui_init) {
       //  screen = lv_obj_create(lv_scr_act());
     }
     void (*ui_init)();
@@ -48,9 +47,10 @@ public:
     friend void event_cb(lv_event_t *e);
 };
 
+extern pagemanager home;
+extern pagemanager left;
+extern pagemanager right;
 
-// pagemanager<> page_main;
-// pagemanager page_left;
-// pagemanager page_right;
+void ui_init(void);
 
 #endif

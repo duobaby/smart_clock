@@ -3,7 +3,6 @@
 
 extern "C" {
     UART_HandleTypeDef uart1;
-    
 }
 uart_dev uart_terminal(USART1, 115200, &uart1);
 void uart_dev::init() {
